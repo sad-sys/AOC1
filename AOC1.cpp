@@ -7,35 +7,26 @@ using namespace std;
 
 int main()
 {
-    vector<string> lines;
+    vector <int> elfCaloryTotals;
+    vector <int> elfCalory;
 
     fstream new_file;
-    new_file.open("AOC1Input.txt", ios::in);
-
+    new_file.open("AOCInput1Processed.txt", ios::in);
+    
     if (new_file.is_open())
     {
-        string sa;
-        while (getline(new_file, sa))
-        {
-
-            if (sa.empty())
+        string elf;
+        int elfInt;
+        while (getline(new_file, elf))
+        {   
+            if(elf == "ERROR")
             {
-                lines.push_back("ERROR");
-                sa += "\n";
-                lines.push_back(sa);
+                cout << "I'm Spartacus";
             }
             else
             {
-                sa += "\n";
-                lines.push_back(sa);
+                elfInt = stoi(elf);
             }
         }
     }
-    new_file.close();
-    for (const string& line : lines)
-    {
-        cout << line;
-    }
-    
-    return 0;
 }
