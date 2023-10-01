@@ -5,24 +5,51 @@
 
 using namespace std;
 
-int main()
+const char* userChoiceArray[3] = {"A","B","C"};
+const char* secondChoiceArray[3] = {"X","Y","Z"};
+
+int indexFinder(string firstLetter)
 {
-    const char* userChoiceArray[3] = {"A","B","C"};
-    const char* secondChoiceArray[3 ] = {"X","Y","Z"};
-
-    const string firstLetter = "B";
-    const string secondLetter = "X";
-
-    int choiceIndex;
 
     for (size_t i = 0; i < 3; ++i)
     {
         const string& correspondingChoice = userChoiceArray[i];
         if (firstLetter == correspondingChoice)
         {
-            choiceIndex = i;
+            int choiceIndex = i;
+            return choiceIndex;
+        }
+
+        const string& secondCorrespondingChoice = secondChoiceArray[i];
+        if (firstLetter == secondCorrespondingChoice)
+        {
+            int secondChoiceIndex = i;
+            return secondChoiceIndex;
         }
     }
+}
+
+char choiceComparer(int choiceIndex, int secondChoiceIndex)
+{
+    //Instead of using a crap ton of if statements lets use a mutlidimentional array
+    const int rows = 3;
+    const int columns = 3;
+
+    string choicesArray[rows][columns] =
+    {
+        {"d","w","l"},
+        {"l","d","w"},
+        {"w","l","d"}
+    };
+
+    string answer = choicesArray[choiceIndex][secondChoiceIndex];
+    cout << "   ANSWER IS: " << answer;
+}
+
+int main()
+{  
+    int choiceIndex;
+    int secondChoiceIndex;
 
     fstream new_file;
     new_file.open("AOC2Input.txt", ios::in);
@@ -38,39 +65,20 @@ int main()
 
             while (pointer != NULL)
             {
-                cout << pointer != NULL;
+                if (strcmp(pointer, "A") == 0 || strcmp(pointer, "B") == 0 || strcmp(pointer, "C") == 0)
+                {
+                    choiceIndex = indexFinder(pointer);
+                }
+                if (strcmp(pointer, "X") == 0 || strcmp(pointer, "Y") == 0 || strcmp(pointer, "Z") == 0)
+                {
+                    secondChoiceIndex = indexFinder(pointer);
+                }
                 pointer = strtok(NULL, " ");
+
+                choiceComparer(choiceIndex, secondChoiceIndex);
             };
-        }
+        };
     };
-
-    int secondChoiceIndex;
-
-    for (size_t i = 0; i < 3; ++i)
-    {
-        const string& correspondingChoice = secondChoiceArray[i];
-        if (secondLetter == correspondingChoice)
-        {
-            secondChoiceIndex = i;
-        }
-    };
-
-    cout << choiceIndex;
-
-    //Instead of using a crap ton of if statements lets use a mutlidimentional array
-    const int rows = 3;
-    const int columns = 3;
-
-    string choicesArray[rows][columns] =
-    {
-        {"d","w","l"},
-        {"l","d","w"},
-        {"w","l","d"}
-    };
-
-    string answer = choicesArray[choiceIndex][secondChoiceIndex];
-    
-    cout << answer;
 
     return 0;
 }
