@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstring>
 
 using namespace std;
 
@@ -24,11 +25,24 @@ int main()
     }
 
     fstream new_file;
-    new_file.open("AOC2Input.txt");
+    new_file.open("AOC2Input.txt", ios::in);
     if (new_file.is_open())
     {
-        
-    }
+        string line;
+        while (getline(new_file, line))
+        {
+            char processedLine[1024];
+            strcpy(processedLine, line.c_str());
+            char *pointer;
+            pointer = strtok(processedLine," ");
+
+            while (pointer != NULL)
+            {
+                cout << pointer != NULL;
+                pointer = strtok(NULL, " ");
+            };
+        }
+    };
 
     int secondChoiceIndex;
 
@@ -39,7 +53,7 @@ int main()
         {
             secondChoiceIndex = i;
         }
-    }
+    };
 
     cout << choiceIndex;
 
