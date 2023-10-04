@@ -37,9 +37,9 @@ char choiceComparer(int choiceIndex, int secondChoiceIndex)
 
     string choicesArray[rows][columns] =
     {
-        {"d","w","l"},
-        {"l","d","w"},
-        {"w","l","d"}
+        {"d","l","w"},
+        {"w","d","l"},
+        {"l","w","d"}
     };
 
     string answer = choicesArray[choiceIndex][secondChoiceIndex];
@@ -50,6 +50,8 @@ int main()
 {  
     int choiceIndex;
     int secondChoiceIndex;
+
+    int totalScore = 0;
 
     fstream new_file;
     new_file.open("AOC2Input.txt", ios::in);
@@ -65,6 +67,7 @@ int main()
 
             while (pointer != NULL)
             {
+                
                 if (strcmp(pointer, "A") == 0 || strcmp(pointer, "B") == 0 || strcmp(pointer, "C") == 0)
                 {
                     choiceIndex = indexFinder(pointer);
@@ -72,6 +75,19 @@ int main()
                 if (strcmp(pointer, "X") == 0 || strcmp(pointer, "Y") == 0 || strcmp(pointer, "Z") == 0)
                 {
                     secondChoiceIndex = indexFinder(pointer);
+
+                    if (secondChoiceIndex == 0)
+                    {
+                        totalScore = totalScore + 1;
+                    }
+                    else if (secondChoiceIndex == 1)
+                    {
+                        totalScore = totalScore + 2;
+                    }
+                    else if (secondChoiceIndex == 2)
+                    {
+                        totalScore = totalScore + 3;
+                    }
                 }
                 pointer = strtok(NULL, " ");
 
@@ -79,6 +95,6 @@ int main()
             };
         };
     };
-
+    cout << "\n" << "TotalScore:  " << totalScore;
     return 0;
 }
