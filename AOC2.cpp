@@ -44,6 +44,26 @@ char choiceComparer(int choiceIndex, int secondChoiceIndex)
 
     string answer = choicesArray[choiceIndex][secondChoiceIndex];
     cout << "   ANSWER IS: " << answer;
+};
+
+int secondChoiceScore(int secondChoiceIndex, int totalScore)
+{
+    if (secondChoiceIndex == 0)
+    {
+        totalScore = totalScore + 1;
+        cout << "\n" << "Total Score add 1";
+    }
+    else if (secondChoiceIndex == 1)
+    {
+        totalScore = totalScore + 2;
+        cout << "\n" << "Total Score add 2";
+    }
+    else if (secondChoiceIndex == 2)
+    {
+        totalScore = totalScore + 3;
+        cout << "\n" << "Total Score add 3";
+    }
+    return totalScore;
 }
 
 int main()
@@ -75,19 +95,7 @@ int main()
                 if (strcmp(pointer, "X") == 0 || strcmp(pointer, "Y") == 0 || strcmp(pointer, "Z") == 0)
                 {
                     secondChoiceIndex = indexFinder(pointer);
-
-                    if (secondChoiceIndex == 0)
-                    {
-                        totalScore = totalScore + 1;
-                    }
-                    else if (secondChoiceIndex == 1)
-                    {
-                        totalScore = totalScore + 2;
-                    }
-                    else if (secondChoiceIndex == 2)
-                    {
-                        totalScore = totalScore + 3;
-                    }
+                    totalScore = secondChoiceScore(secondChoiceIndex, totalScore);
                 }
                 pointer = strtok(NULL, " ");
 
