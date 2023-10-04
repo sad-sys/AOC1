@@ -87,7 +87,6 @@ int main()
 
             while (pointer != NULL)
             {
-                
                 if (strcmp(pointer, "A") == 0 || strcmp(pointer, "B") == 0 || strcmp(pointer, "C") == 0)
                 {
                     choiceIndex = indexFinder(pointer);
@@ -98,9 +97,8 @@ int main()
                     totalScore = secondChoiceScore(secondChoiceIndex, totalScore);
                 }
                 pointer = strtok(NULL, " ");
-
-                choiceComparer(choiceIndex, secondChoiceIndex);
             };
+            choiceComparer(choiceIndex, secondChoiceIndex);
         };
     };
     cout << "\n" << "TotalScore:  " << totalScore;
