@@ -5,7 +5,7 @@
 
 using namespace std;
 
-const char* userChoiceArray[3] = {"A","B","C"};
+const char* userChoiceArray[3] =   {"A","B","C"};
 const char* secondChoiceArray[3] = {"X","Y","Z"};
 
 int indexFinder(string firstLetter)
@@ -27,9 +27,11 @@ int indexFinder(string firstLetter)
             return secondChoiceIndex;
         }
     }
-};
 
-char choiceComparer(int choiceIndex, int secondChoiceIndex, int totalScore)
+    return -1;
+}
+
+int choiceComparer(int choiceIndex, int secondChoiceIndex, int totalScore)
 {
     //Instead of using a crap ton of if statements lets use a mutlidimentional array
     const int rows = 3;
@@ -37,9 +39,9 @@ char choiceComparer(int choiceIndex, int secondChoiceIndex, int totalScore)
 
     string choicesArray[rows][columns] =
     {
-        {"d","l","w"},
-        {"w","d","l"},
-        {"l","w","d"}
+        {"d","w","l"},
+        {"l","d","w"},
+        {"w","l","d"}
     };
 
     string answer = choicesArray[choiceIndex][secondChoiceIndex];
