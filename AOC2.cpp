@@ -27,9 +27,9 @@ int indexFinder(string firstLetter)
             return secondChoiceIndex;
         }
     }
-}
+};
 
-char choiceComparer(int choiceIndex, int secondChoiceIndex)
+char choiceComparer(int choiceIndex, int secondChoiceIndex, int totalScore)
 {
     //Instead of using a crap ton of if statements lets use a mutlidimentional array
     const int rows = 3;
@@ -43,6 +43,19 @@ char choiceComparer(int choiceIndex, int secondChoiceIndex)
     };
 
     string answer = choicesArray[choiceIndex][secondChoiceIndex];
+    if (answer == "l")
+    {
+        totalScore = totalScore + 0;
+    }
+    else if (answer == "d")
+    {
+        totalScore = totalScore + 3;
+    }
+    else if (answer == "w")
+    {
+        totalScore = totalScore + 6;
+    }
+    return totalScore;
     cout << "   ANSWER IS: " << answer;
 };
 
@@ -51,20 +64,17 @@ int secondChoiceScore(int secondChoiceIndex, int totalScore)
     if (secondChoiceIndex == 0)
     {
         totalScore = totalScore + 1;
-        cout << "\n" << "Total Score add 1";
     }
     else if (secondChoiceIndex == 1)
     {
         totalScore = totalScore + 2;
-        cout << "\n" << "Total Score add 2";
     }
     else if (secondChoiceIndex == 2)
     {
         totalScore = totalScore + 3;
-        cout << "\n" << "Total Score add 3";
     }
     return totalScore;
-}
+};
 
 int main()
 {  
@@ -98,9 +108,9 @@ int main()
                 }
                 pointer = strtok(NULL, " ");
             };
-            choiceComparer(choiceIndex, secondChoiceIndex);
+            totalScore = choiceComparer(choiceIndex, secondChoiceIndex, totalScore);
         };
     };
     cout << "\n" << "TotalScore:  " << totalScore;
     return 0;
-}
+};
